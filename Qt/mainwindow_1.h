@@ -5,6 +5,8 @@
 #include <QLineEdit>
 #include <QVector>
 #include "member.h"
+#include <QFormLayout>
+#include <QLabel>
 
 class MainWindow_1 : public QWidget
 {
@@ -14,7 +16,7 @@ public:
     MainWindow_1(QWidget *parent, QVector<Member>& Members);
     ~MainWindow_1();
 
-    //friend class Member;
+    QLineEdit* MakeLineEdit(int maxLength,int Mode);
 };
 
 #endif // MAINWINDOW_1_H

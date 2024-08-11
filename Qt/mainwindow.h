@@ -5,7 +5,9 @@
 #include <QLabel>
 #include <QString>
 #include <QVector>
+
 #include "member.h"
+
 
 class MainWindow : public QMainWindow
 {
@@ -13,6 +15,9 @@ class MainWindow : public QMainWindow
 private:
     int balance;
     QString name;
+    QString ID;
+    QString Password;
+    QString account;
 
     //QString greeting_msg = "Welcome " + name + "\n" + "How can I help you?";
 
@@ -27,12 +32,14 @@ public:
     MainWindow(QWidget *parent, QVector<Member>& Members);
 
     ~MainWindow();
-    void getInformation(QString name, int balance);
+    void getInformation(QString name, QString ID, QString Password, QString account, int balance);
 public slots:
     void deposit();
     void withdraw();
     void check();
-    void send();
-    void exit();
+    void send(QVector<Member>& Members);
+    void exit(QVector<Member>& Members);
+
 };
 #endif // MAINWINDOW_H
+

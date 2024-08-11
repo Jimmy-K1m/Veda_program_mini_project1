@@ -1,9 +1,11 @@
 #include <QDebug>
-
 #include "functiondata.h"
 
+#define url "C:\\Users\\dongjin\\Desktop\\mini_project\\first\\datatest.txt"
+
+
 void read_data(QVector<Member>& Members) {
-    QFile file("C:\\Users\\DREAM05\\Desktop\\untitled\\data.txt");
+    QFile file(url);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Can't open the file";
@@ -47,7 +49,7 @@ void read_data(QVector<Member>& Members) {
 }
 
 void save_data(const QVector<Member>& input) {
-    QFile file("C:\\Users\\DREAM05\\Desktop\\untitled\\data.txt");
+    QFile file(url);
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
         qDebug() << "Can't open txt file";

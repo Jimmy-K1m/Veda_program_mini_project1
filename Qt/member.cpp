@@ -1,4 +1,7 @@
 #include "member.h"
+#include <QVector>
+
+
 
 Member::Member() {}
 Member::Member(QString ID, QString password, QString name, QString account){
@@ -40,4 +43,15 @@ QString Member::get_account() const{
 int Member::get_balance() const{
     return balance;
 }
+void Member::modify_balance(int Money, int Mode){
+    if(Mode == 0)
+    {
+        balance += Money;
+        return;
+    }
+    else
+    balance = Money;
+
+}
+
 //QString Mem

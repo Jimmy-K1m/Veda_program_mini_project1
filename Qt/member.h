@@ -1,7 +1,7 @@
 #ifndef MEMBER_H
 #define MEMBER_H
 #include <QString>
-
+#include <QMetaType>
 class Member
 {
 protected:
@@ -20,6 +20,9 @@ public:
     QString get_name () const;
     QString get_account() const;
     int get_balance() const;
+    void modify_balance(int Money, int Mode);
 };
+
+Q_DECLARE_METATYPE(Member)
 
 #endif // MEMBER_H

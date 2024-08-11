@@ -1,9 +1,11 @@
 #include <QApplication>
+#include <QVector>
 
 #include "mainwindow_1.h"
 #include "functiondata.h"
 #include "loginwidget.h"
 #include "mainwindow.h"
+#include "member.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,8 +14,7 @@ int main(int argc, char *argv[])
 
     //파일 불러오기
     QVector<Member> Members;
-    Members.append( Member("kang1234", "1234", "kang", "11111111111"));
-    Members.append( Member("kim1234", "1234", "kim", "11111111111"));
+
     read_data(Members);
 
     for(int i = 0 ; i < Members.size();i++)
@@ -26,8 +27,8 @@ int main(int argc, char *argv[])
 
     mw->hide();
     mw_1->hide();
-    // LoginWidget l(nullptr, Members, mw, mw_1);
-    LoginWidget l;
+    LoginWidget l(nullptr, mw, mw_1);
+    //LoginWidget l;
     l.show();
     return a.exec();
 }
