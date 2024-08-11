@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/DREAM05/Desktop/untitled
+# Install script for directory: C:/Users/dongjin/Desktop/mini_project/first
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/untitled")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/first")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,7 +33,7 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "C:/Users/DREAM05/Desktop/untitled/build/Desktop_Qt_6_5_6_MSVC2019_64bit-Debug/untitled.exe")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "C:/Users/dongjin/Desktop/mini_project/first/build/Desktop_Qt_6_5_6_MSVC2019_64bit-Debug/first.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -44,5 +44,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/DREAM05/Desktop/untitled/build/Desktop_Qt_6_5_6_MSVC2019_64bit-Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/dongjin/Desktop/mini_project/first/build/Desktop_Qt_6_5_6_MSVC2019_64bit-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
