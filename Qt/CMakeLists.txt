@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         mainwindow_1.h mainwindow_1.cpp
         member.h member.cpp
         datatest.txt
+        mainwindow.qrc
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET first APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

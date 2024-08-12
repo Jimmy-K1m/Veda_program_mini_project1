@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>build/deposit.png</file>
+        <file>build/transfer.png</file>
+        <file>build/withdraw.png</file>
+        <file>build/check.png</file>
+        <file>build/exit.png</file>
+    </qresource>
+</RCC>

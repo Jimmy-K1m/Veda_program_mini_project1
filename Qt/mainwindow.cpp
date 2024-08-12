@@ -8,6 +8,7 @@
 #include <QGroupBox>
 #include <QApplication>
 #include <QPushButton>
+#include <QLocale>
 
 #include "mainwindow.h"
 #include "functiondata.h"
@@ -16,27 +17,41 @@
 MainWindow::MainWindow(QWidget *parent, QVector<Member>& Members)
     : QMainWindow(parent)
 {
+    this->setWindowTitle("Banking System Window");
     qRegisterMetaType<QVector<Member>>("QVector<Member>");
 
-    this->resize(300,200); // width, height
+    this->resize(420,200); // width, height
     QToolBar *Bankingtoolbar = addToolBar("&Banking");
         //setMenuBar(menubar);
     Bankingtoolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-    QAction *depositAct = makeAction(":/images/deposit.png", "&Deposit", "Ctrl+D", \
-                                     "Deposit", this, SLOT(deposit( )));
-    QAction *withdrawAct = makeAction(":/images/withdraw.png", "&Withdraw", "Ctrl+W", \
-                                      "Withdraw", this, SLOT(withdraw( )));
-    QAction *checkAct = makeAction(":/images/check.png", "&Check", "Ctrl+C", \
+
+    QAction *depositAct = new QAction(QIcon(":/build/deposit.png"), "&Deposit", this);
+    depositAct->setShortcut(QKeySequence("Ctrl+D"));
+    depositAct->setStatusTip("Deposit");
+    connect(depositAct, &QAction::triggered, this, [this, &Members]() {
+        this->deposit(Members);
+    });
+
+    QAction *withdrawAct = new QAction(QIcon(":/build/withdraw.png"), "&Withdraw", this);
+    withdrawAct->setShortcut(QKeySequence("Ctrl+W"));
+    withdrawAct->setStatusTip("Withdraw");
+    connect(withdrawAct, &QAction::triggered, this, [this, &Members]() {
+        this->withdraw(Members);
+    });
+
+
+    QAction *checkAct = makeAction(":/build/check.png", "&Check", "Ctrl+C", \
                                    "Check", this, SLOT(check( )));
-    QAction *sendAct = new QAction(QIcon(":/images/send.png"), "&Send", this);
+
+    QAction *sendAct = new QAction(QIcon(":/build/transfer.png"), "&Send", this);
     sendAct->setShortcut(QKeySequence("Ctrl+S"));
     sendAct->setStatusTip("Send");
     connect(sendAct, &QAction::triggered, this, [this, &Members]() {
         this->send(Members);
     });
 
-    QAction *exitAct = new QAction(QIcon(":/images/exit.png"), "&Exit", this);
+    QAction *exitAct = new QAction(QIcon(":/build/exit.png"), "&Exit", this);
     exitAct->setShortcut(QKeySequence("Ctrl+E"));
     exitAct->setStatusTip("Exit");
     connect(exitAct, &QAction::triggered, this, [this, &Members]() {
@@ -72,7 +87,7 @@ QAction *MainWindow::makeAction(QString icon, QString name, \
 
 
 
-void MainWindow::deposit(){
+void MainWindow::deposit(QVector<Member>& Members){
     qDebug() << "deposit";
     QWidget *widget = new QWidget(this);
     QFormLayout *formLayout = new QFormLayout(widget);
@@ -94,11 +109,23 @@ void MainWindow::deposit(){
 
     setCentralWidget(widget);
 
-    connect(okButton,&QPushButton::clicked, [=](){
+    connect(okButton,&QPushButton::clicked, [=, &Members](){
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Check", "Are you sure to put the money into the account?", QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::Yes) {
             balance += inputMoney->text().toInt();
+            // 새로 추가한 부분
+            int i =0;
+            for(; i <Members.size();i++)
+            {
+                if(account == Members[i].get_account())
+                {
+                    break;
+                }
+            }
+            Members[i].modify_balance(balance ,1);
+            save_data(Members);
+            //
             qDebug()<<balance;
             QMessageBox::information(this, "Success", "Complete your work!");
             inputMoney->clear();
@@ -110,7 +137,7 @@ void MainWindow::deposit(){
 
 }
 
-void MainWindow::withdraw(){
+void MainWindow::withdraw(QVector<Member>& Members){
     qDebug() << "withdraw";
     QWidget *widget = new QWidget(this);
     QFormLayout *formLayout = new QFormLayout(widget);
@@ -132,7 +159,7 @@ void MainWindow::withdraw(){
 
     setCentralWidget(widget);
 
-    connect(okButton,&QPushButton::clicked, [=](){
+    connect(okButton,&QPushButton::clicked, [=, &Members](){
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Check", "Are you sure to take the money from account?", QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::Yes) {
@@ -144,6 +171,18 @@ void MainWindow::withdraw(){
             }
             QMessageBox::information(this, "Success", "Complete your work!");
             balance -= withdrawMoney->text().toInt();
+            // 새로 추가한 부분
+            int i =0;
+            for(; i <Members.size();i++)
+            {
+                if(account == Members[i].get_account())
+                {
+                    break;
+                }
+            }
+            Members[i].modify_balance(balance ,1);
+            save_data(Members);
+            //
             qDebug()<<balance;
             withdrawMoney->clear();
         }}
@@ -155,11 +194,21 @@ void MainWindow::check(){
     QWidget *widget = new QWidget(this);
     QFormLayout *formLayout = new QFormLayout(widget);
 
-    QString sentence = "Your balance : " +  QString::number(balance);
+    QString sentence = "Your balance : ";
     QLabel* check_screen = new QLabel;
     check_screen->setText(sentence);
+    check_screen->setStyleSheet("QLabel{ font-family: 'Times New Roman'; font : 10pt;}");
+    //QLabel { color : black; font : 18pt; font-family: 'Arial'; font-weight : 'bold'}");
+    QLocale locale = QLocale(QLocale::English, QLocale::UnitedStates);
+    QString formattedBalance = locale.toString(balance);
 
-    formLayout->addRow(check_screen);
+    QLabel* balance_screen = new QLabel;
+    balance_screen->setText( "₩" + formattedBalance);
+    balance_screen->setStyleSheet("QLabel { font-family: 'Times New Roman'; font : 10pt; border: 1px solid black; padding: 5px; }");
+    //balance_screen->set
+
+
+    formLayout->addRow(check_screen, balance_screen);
     widget->setLayout(formLayout);
 
     setCentralWidget(widget);
@@ -243,6 +292,19 @@ void MainWindow::send(QVector<Member>& Members){
                     else{
                         Members[i].modify_balance(send_money, 0);
                         balance -= send_money;
+
+                        // 새로 추가한 부분
+                        int i =0;
+                        for(; i <Members.size();i++)
+                        {
+                            if(account == Members[i].get_account())
+                            {
+                                break;
+                            }
+                        }
+                        Members[i].modify_balance(balance ,1);
+                        save_data(Members);
+                        //
                         sendMoney[0]->clear();
                         sendMoney[1]->clear();
                         QMessageBox::information(this, "Success", "Complete your work!", QMessageBox::Ok);

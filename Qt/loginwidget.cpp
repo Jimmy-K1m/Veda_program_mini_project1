@@ -17,7 +17,7 @@ LoginWidget::LoginWidget(QWidget *parent, MainWindow* window, MainWindow_1* wind
 {
     read_data(Members);
 
-    this->setWindowTitle("Login Window");
+    this->setWindowTitle("SignIn Window");
 
     // QVector<QString> answer_ID = {"test", "test1"};
     // QVector<QString> answer_password = {"1234", "1345"};
@@ -83,13 +83,12 @@ LoginWidget::LoginWidget(QWidget *parent, MainWindow* window, MainWindow_1* wind
             QMessageBox::warning(this, "Error", "Wrong ID or Password", QMessageBox::Ok);
             lineEdit[0]->clear();
             lineEdit[1]->clear();
-            // 에러 warning 여러 번 오류 발생
         }
     });
 
     QObject::connect(assignButton, &QPushButton::clicked, [=](){
         bool ok;
-        QMessageBox::information(this, "Assgin", "Do you want to join us?", QMessageBox::Ok);
+        QMessageBox::information(this, "Assign", "Do you want to join us?", QMessageBox::Ok);
         window_1->setVisible(true);
     });
     // 확인 창 만들기

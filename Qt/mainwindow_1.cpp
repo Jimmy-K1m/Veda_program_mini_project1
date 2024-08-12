@@ -13,6 +13,7 @@ MainWindow_1::MainWindow_1(){}
 MainWindow_1::MainWindow_1(QWidget *parent, QVector<Member>& Members)
     : QWidget(parent) {
 
+    this->setWindowTitle("Sign Up Window");
 
     //Member::Member(QString ID, QString password, QString name, QString account)
 
@@ -236,7 +237,6 @@ MainWindow_1::MainWindow_1(QWidget *parent, QVector<Member>& Members)
         this->close();
 
     });
-// spinbox 추가 age
 }
 MainWindow_1::~MainWindow_1()
 {

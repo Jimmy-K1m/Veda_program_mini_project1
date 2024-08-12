@@ -34,8 +34,8 @@ public:
     ~MainWindow();
     void getInformation(QString name, QString ID, QString Password, QString account, int balance);
 public slots:
-    void deposit();
-    void withdraw();
+    void deposit(QVector<Member>& Members);
+    void withdraw(QVector<Member>& Members);
     void check();
     void send(QVector<Member>& Members);
     void exit(QVector<Member>& Members);
