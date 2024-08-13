@@ -22,9 +22,9 @@ void read_data(QVector<Member>& Members) {
     int i = 0;
 
     while (!in.atEnd()) {
-        output = in.readLine();  // 파일에서 한 줄 읽기
+        output = in.readLine();
 
-        QStringList fields = output.split('|');  // '|'를 기준으로 문자열 분리
+        QStringList fields = output.split('|');  // '|'는 구분자
 
         for (const QString &temp : fields) {
             if (i == 0)
@@ -37,7 +37,7 @@ void read_data(QVector<Member>& Members) {
                 account_temp = temp;
             else {
                 saved_money_temp = temp.toInt();
-                i = -1;  // 모든 데이터를 다 읽었으므로, i를 초기화
+                i = -1;  // 모든 데이터를 다 읽었으므로, i 초기화
                 Members.append(Member(ID_temp, password_temp, name_temp, account_temp, saved_money_temp));
             }
             i++;

@@ -12,7 +12,11 @@
 
 #include "mainwindow.h"
 #include "functiondata.h"
-
+/**
+ *
+ *banking management system window
+ *
+ */
 
 MainWindow::MainWindow(QWidget *parent, QVector<Member>& Members)
     : QMainWindow(parent)

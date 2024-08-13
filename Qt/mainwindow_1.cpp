@@ -7,6 +7,12 @@
 #include "mainwindow_1.h"
 #include "functiondata.h"
 
+/**
+ *
+ *banking system sign up window
+ *
+ */
+
 
 MainWindow_1::MainWindow_1(){}
 

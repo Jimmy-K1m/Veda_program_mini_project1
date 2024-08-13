@@ -263,7 +263,8 @@
 		"C:/Qt/6.5.6/msvc2019_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets-debug.cmake",
 		"C:/Qt/6.5.6/msvc2019_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginTargets-relwithdebinfo.cmake",
 		"C:/Qt/6.5.6/msvc2019_64/lib/cmake/Qt6Widgets/Qt6QWindowsVistaStylePluginAdditionalTargetInfo.cmake",
-		"C:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/GNUInstallDirs.cmake"
+		"C:/Qt/Tools/CMake_64/share/cmake-3.29/Modules/GNUInstallDirs.cmake",
+		"C:/Users/dongjin/Desktop/mini_project/first/mainwindow.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "C:/Users/dongjin/Desktop/mini_project/first",
 	"CROSS_CONFIG" : false,
