@@ -7,7 +7,7 @@ Sign up window shows name, ID, password fields and it serves warning which can n
 Lastly, banking system have toolbars which can connect to their functions.
 You should modify your address on functiondata.cpp file
 
-Image files are placed on build folders
+Image files are placed in build folder.
 <br/>
 
 
