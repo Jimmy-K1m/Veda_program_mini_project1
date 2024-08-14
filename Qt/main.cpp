@@ -18,9 +18,10 @@
  * Sign up window shows name, ID, password fields and it serves warning which can notify filled content is proper
  * Lastly, banking system have toolbars which can connect to their functions.
  *
- * You can modify your address on functiondata.cpp file
  *
- */
+ * You should modify your address on functiondata.cpp file
+ *
+ **/
 
 
 int main(int argc, char *argv[])
@@ -44,7 +45,7 @@ int main(int argc, char *argv[])
     mw->hide();
     mw_1->hide();
     LoginWidget l(nullptr, mw, mw_1);
-    //LoginWidget l;
+
     l.show();
     return a.exec();
 }

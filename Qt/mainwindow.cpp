@@ -9,6 +9,7 @@
 #include <QApplication>
 #include <QPushButton>
 #include <QLocale>
+#include <QDebug>
 
 #include "mainwindow.h"
 #include "functiondata.h"
@@ -96,18 +97,21 @@ void MainWindow::deposit(QVector<Member>& Members){
     QWidget *widget = new QWidget(this);
     QFormLayout *formLayout = new QFormLayout(widget);
     QLabel *amountLabel = new QLabel("Amount:", this);
+    QLabel *limitLabel = new QLabel("The amount should be less than ₩10,000,000 ", this);
+    limitLabel->setStyleSheet("QLabel { font: 6pt; color:'red';font-family: 'Times New Roman';}");
     QLineEdit *inputMoney = new QLineEdit(this);
     inputMoney->setPlaceholderText("Type down how much do you want to deposit");
 
     QPushButton *okButton = new QPushButton("OK", this);
     QHBoxLayout *buttonLayout = new QHBoxLayout;
-    buttonLayout->addStretch();
-    buttonLayout->addWidget(okButton);
+
 
 
 
     formLayout->addRow(amountLabel,inputMoney);
+    formLayout->addRow(limitLabel);
     formLayout->addRow(okButton);
+
 
     widget->setLayout(formLayout);
 
@@ -118,7 +122,15 @@ void MainWindow::deposit(QVector<Member>& Members){
         reply = QMessageBox::question(this, "Check", "Are you sure to put the money into the account?", QMessageBox::Yes | QMessageBox::No);
         if (reply == QMessageBox::Yes) {
             balance += inputMoney->text().toInt();
-            // 새로 추가한 부분
+
+            if(inputMoney->text().length() >= 8)
+            {
+                qDebug() << inputMoney->text().length();
+                QMessageBox::warning(this, "Warning", "Your input money is out of range", QMessageBox::Yes );
+                inputMoney->clear();
+                return;
+            }
+
             int i =0;
             for(; i <Members.size();i++)
             {
@@ -141,20 +153,27 @@ void MainWindow::deposit(QVector<Member>& Members){
 
 }
 
+
+
+
 void MainWindow::withdraw(QVector<Member>& Members){
     qDebug() << "withdraw";
     QWidget *widget = new QWidget(this);
     QFormLayout *formLayout = new QFormLayout(widget);
     QLabel *amountLabel = new QLabel("Amount:", this);
+
+    QLabel *limitLabel = new QLabel("The amount should be less than ₩10,000,000 ", this);
+    limitLabel->setStyleSheet("QLabel { font: 6pt; color:'red';font-family: 'Times New Roman';}");
+
     QLineEdit *withdrawMoney = new QLineEdit(this);
     withdrawMoney->setPlaceholderText("Type down how much do you want to withdraw");
 
     QPushButton *okButton = new QPushButton("OK", this);
-    QHBoxLayout *buttonLayout = new QHBoxLayout;
-    buttonLayout->addStretch();
-    buttonLayout->addWidget(okButton);
+
+\
 
     formLayout->addRow(amountLabel, withdrawMoney);
+    formLayout->addRow(limitLabel);
     //formLayout->addRow(withdrawMoney);
     formLayout->addRow(okButton);
 
@@ -173,9 +192,17 @@ void MainWindow::withdraw(QVector<Member>& Members){
                 withdrawMoney->clear();
                 return;
             }
+            if(withdrawMoney->text().length() >= 8)
+            {
+                QMessageBox::warning(this, "Warning", "Your input money is out of range", QMessageBox::Yes );
+                withdrawMoney->clear();
+                return;
+            }
+
             QMessageBox::information(this, "Success", "Complete your work!");
             balance -= withdrawMoney->text().toInt();
             // 새로 추가한 부분
+            qDebug() << withdrawMoney->text().toInt();
             int i =0;
             for(; i <Members.size();i++)
             {
@@ -236,14 +263,12 @@ void MainWindow::send(QVector<Member>& Members){
     sendMoney[0]->setPlaceholderText("Type down bank account of opponent");
     sendMoney[1]->setPlaceholderText("Type down how much do you want to send");
 
-
+    QLabel *limitLabel = new QLabel("The amount should be less than ₩10,000,000 ", this);
+    limitLabel->setStyleSheet("QLabel { font: 6pt; color:'red';font-family: 'Times New Roman';}");
 
     QPushButton *okButton = new QPushButton("OK", this);
-    /*
-    QHBoxLayout *buttonLayout = new QHBoxLayout;
-    buttonLayout->addStretch();
-    buttonLayout->addWidget(okButton);
-    */
+
+    formLayout->addRow(limitLabel);
     formLayout->addRow(okButton);
 
     widget->setLayout(formLayout);
@@ -261,6 +286,13 @@ void MainWindow::send(QVector<Member>& Members){
                 sendMoney[0]->clear();
                 return;
             }
+            else if(sendMoney[1]->text().length() >= 8)
+            {
+                QMessageBox::warning(this, "Warning", "Your input money is out of range", QMessageBox::Yes );
+                sendMoney[1]->clear();
+                return;
+            }
+
             else if(sendMoney[1]->text().isEmpty())
             {
                 QMessageBox::warning(this, "Warning", "You should fill account blank", QMessageBox::Yes );
