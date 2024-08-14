@@ -10,13 +10,15 @@
 
 /**
  *
- *This system is banking system which can deposit, withdraw, transfer to other's account.
- *Also, this system serves sign up function, load data to specific text file and save data to speicific file
+ * This system is banking system which can deposit, withdraw, transfer to other's account.
+ * Also, this system serves sign up function, load data to specific text file and save data to speicific file
  *
  *
- *Initially, the first window can show login widget and buttons which can connect to sign up and main banking system
- *Sign up window shows name, ID, password fields and it serves warning which can notify filled content is proper
- *Lastly, banking system have toolbars which can connect to their functions.
+ * Initially, the first window can show login widget and buttons which can connect to sign up and main banking system
+ * Sign up window shows name, ID, password fields and it serves warning which can notify filled content is proper
+ * Lastly, banking system have toolbars which can connect to their functions.
+ *
+ * You can modify your address on functiondata.cpp file
  *
  */
 

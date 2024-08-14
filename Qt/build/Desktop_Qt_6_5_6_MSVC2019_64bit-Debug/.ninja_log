@@ -60,3 +60,13 @@
 8	95	7451485240033562	C:/Users/dongjin/Desktop/mini_project/first/build/Desktop_Qt_6_5_6_MSVC2019_64bit-Debug/first_autogen/mocs_compilation.cpp	e719a5fa4e007ff8
 102	1898	7451485273833769	CMakeFiles/first.dir/mainwindow.cpp.obj	89d6d4c928b0e55e
 1899	2061	7451485275189278	first.exe	eb5a546effe1e959
+10	128	7452403945887190	first_autogen/timestamp	e719a5fa4e007ff8
+10	128	7452403945887190	first_autogen/mocs_compilation.cpp	e719a5fa4e007ff8
+10	128	7452403945887190	C:/Users/dongjin/Desktop/mini_project/first/build/Desktop_Qt_6_5_6_MSVC2019_64bit-Debug/first_autogen/timestamp	e719a5fa4e007ff8
+10	128	7452403945887190	C:/Users/dongjin/Desktop/mini_project/first/build/Desktop_Qt_6_5_6_MSVC2019_64bit-Debug/first_autogen/mocs_compilation.cpp	e719a5fa4e007ff8
+151	2397	7452406308529855	CMakeFiles/first.dir/functiondata.cpp.obj	21726c2075fe4e8a
+136	2587	7452406310420014	CMakeFiles/first.dir/main.cpp.obj	7dc7b16e353fd71f
+156	2613	7452406310690885	CMakeFiles/first.dir/loginwidget.cpp.obj	ccb5a427bc4294da
+160	2685	7452406311410007	CMakeFiles/first.dir/mainwindow_1.cpp.obj	b53e3a8ef727b06f
+139	2792	7452406312483480	CMakeFiles/first.dir/mainwindow.cpp.obj	89d6d4c928b0e55e
+2792	2961	7452406313783542	first.exe	eb5a546effe1e959
